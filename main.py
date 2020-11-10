@@ -18,12 +18,12 @@ async def on_message(message):  # event that happens per any message.
     if message.content.startswith('!rant'):
         await message.channel.send('Buckle up kiddos, its going to get political')
 
-    elif 'voting' in message.content:
+    if 'voting' in message.content:
         await message.add_reaction('<:soldiersam:774092343120887808>')
-    elif ('tyranny' in message.content):
-        await message.add_reaction('<:soldiersam:774092343120887808>')
-    elif ('taxes' in message.content):
-        await message.add_reaction('<:soldiersam:774092343120887808>')
+    if ('tyranny' in message.content):
+        await message.add_reaction('<:nostep:773692274449580062>')
+    if ('taxes' in message.content):
+        await message.add_reaction('<:friedweegs:774055169569587260>')
     else:
         print()
 
