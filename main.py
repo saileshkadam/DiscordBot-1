@@ -16,7 +16,10 @@ async def on_ready():  # method expected by client. This runs once when connecte
 async def on_message(message):  # event that happens per any message.
 
     if message.content.startswith('!rant'):
-        await message.channel.send('Here is a random rambling of political nonsense from some website')
+        await message.channel.send('Buckle up kiddos, its going to get political')
+
+    if ('voting' in message.content) or ('taxes' in message.content):
+        await message.channel.send(':soldiersam:')
 
 
 client.run(token)
