@@ -1,11 +1,23 @@
 import discord
+import praw
+import configparser
 
-path = '/home/ubuntu/tokens/discordToken.txt'
-tokenFile = open(path, 'r')
-token = tokenFile.read()
+#config_path = '/home/ubuntu/tokens/discordToken.txt'
+#tokenFile = open(discord_path, 'r')
+#token = tokenFile.read()
+#praw_path = '/home/ubuntu/tokens/praw_config.ini'
 
+parser = configparser.ConfigParser()
+
+config_path = '/home/ubuntu/tokens/keeg_config.ini'
+parser.read(config_path)
+discord_token = parser.get('discord', 'token')
+reddit = praw.Reddit(client_id=parser.get('praw', 'client_id'),
+                     client_secret=parser.get('praw', 'client_secret'),
+                     password=parser.get('praw', 'password'),
+                     user_agent=parser.get('praw', 'user_agent'),
+                     username=parser.get('praw', 'username'))
 client = discord.Client()  # starts the discord client.
-
 
 @client.event
 async def on_ready():  # method expected by client. This runs once when connected
@@ -25,6 +37,9 @@ async def on_message(message):  # event that happens per any message.
         await message.add_reaction('<:nostep:773692274449580062>')
     if 'tax' in m_content:
         await message.add_reaction('<:friedweegs:774055169569587260>')
+    if m_content.startswith('!kmeme'):
+        subreddit = reddit.subreddit("libertarianmeme")
+        await message.channel.send(subreddit.random().url)
     else:
         print()
 
