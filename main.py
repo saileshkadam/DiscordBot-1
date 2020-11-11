@@ -44,4 +44,4 @@ async def on_message(message):  # event that happens per any message.
         print()
 
 
-client.run(token)
+client.run(discord_token)
