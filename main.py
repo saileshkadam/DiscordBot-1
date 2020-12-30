@@ -47,6 +47,7 @@ async def on_message(message):  # event that happens per any message.
             memeToSend = subreddit.random().url
 
         lastTenPosts.append(memeToSend)
+        print(lastTenPosts)
         await message.channel.send(memeToSend)
     else:
         print()
